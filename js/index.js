@@ -12,7 +12,15 @@ $(document).ready(function(){
   var h = document.documentElement.clientHeight;
   if (h < nPage*120 + 240) {
     imgSize = (Math.floor((h - 240)/nPage)).toString();
-  }  
+  }
+
+  $(function() {                            //function to centrelise my div
+    $('#container').css({
+        'position' : 'absolute',
+        'left' : '50%',
+        'margin-left' : -$('#table').outerWidth()/2
+    });
+  });
 
   $("#table").tabulator({
 		//height:"605px", // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
