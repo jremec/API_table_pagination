@@ -20,17 +20,17 @@ $(document).ready(function(){
     pagination:"local",
     paginationSize:6, 
 		columns:[ //Define Table Columns
-		   // {title:"Logo", field:"image", width:32, formatter:"image", align:"center"},
+		    {title:"Logo", field:"image", formatter:"image", align:"center"},
 		    {title:"Brand name", field:"brand_name", headerFilter:"input", align:"center"},
 		    {title:"Category name", field:"category_name", headerFilter:"input", align:"center"},
 		    {title:"Country", field:"country",  
 					headerFilter:"select", headerFilterParams:{"Slovenia":"Slovenia", "Croatia":"Croatia", "Bosnia & Hercegovina":"Bosnia & Hercegovina", "Serbia":"Serbia", "Macedonia":"Macedonia"}, 
 align:"center"}, 
-        {title:"producer", field:"producer", align:"center", width:"120"},
-        {title:"brand_id", field:"brand_id", align:"center", width:"120"},
+        {title:"producer", field:"producer", formatter:"tickCross", align:"center", width:"120"},
+        /*{title:"brand_id", field:"brand_id", align:"center", width:"120"},
         {title:"master_id", field:"master_id", align:"center", width:"120"},
         {title:"select_id", field:"select_id", align:"center", width:"120"},
-        {title:"row_id", field:"row_id", align:"center", width:"120"},
+        {title:"row_id", field:"row_id", align:"center", width:"120"},*/
 			],
 	}); 
 
@@ -40,11 +40,11 @@ align:"center"},
 	  for (var i = 0; i<response.length-1; i++){
 			tabledata.push(
 					{id:response[i]["row_id"], 
-						//image:response[i]["logo"],
+						image:response[i]["logo"],
  						brand_name:response[i]["brand_name"], category_name:response[i]["category_name"], country:response[i]["country"], producer:response[i]["producer"] , brand_id:response[i]["brand_id"], master_id:response[i]["brand_id"], select_id:response[i]["select_id"], row_id:response[i]["row_id"]}
 	    );
 	  }
-		$("#table").tabulator("addData", tabledata);
+		$("#table").tabulator("setData", tabledata);
 		$("#table").tabulator("setPage", 1);
   }
   /*---------END of the successCallback--------*/
