@@ -6,17 +6,26 @@ $(document).ready(function(){
 	}
 
   var countries = ["SVN", "HRV", "BIH", "SRB", "MKD"];
-
+  var nPage = 6;
+  var imgSize = 120;
   //for (let key in countries){
-  
+  var h = document.documentElement.clientHeight;
+  if (h < nPage*120 + 240) {
+    imgSize = (Math.floor((h - 240)/nPage)).toString();
+  }  
 
   $("#table").tabulator({
 		//height:"605px", // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
 		layout:"fitColumns", //fit columns to width of table (optional)
     pagination:"local",
-    paginationSize:6, 
+    paginationSize:nPage, 
 		columns:[ //Define Table Columns
-		    {title:"Logo", field:"image", formatter:"image", align:"center", width:"150"},
+		    {title:"Logo", field:"image", 
+					formatter:
+ 	          function(cell, formatterParams){
+     					return "<img height='"+ imgSize +"px;' src='" + cell.getValue() + "'</img>";
+						},
+					align:"center", width:"150"},
 		    {title:"Brand name", field:"brand_name", headerFilter:"input", align:"center", width:"200"},
 		    {title:"Category name", field:"category_name", headerFilter:"input", align:"center", width:"200"},
 		    {title:"Country", field:"country",  
