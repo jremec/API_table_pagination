@@ -5,17 +5,19 @@ $(document).ready(function(){
 	}
 
   var countries = {"SVN":"#table_svn", 
-                   "HRV":"#table_hrv", 
+                   /*"HRV":"#table_hrv", 
                    "BIH":"#table_bih", 
                    "SRB":"#table_srb",
-                   "MKD":"#table_mkd"};
+                   "MKD":"#table_mkd"*/};
 
   for (let key in countries){
 		function successCallback(response){
 		   
 		  $(countries[key]).tabulator({
-				height:605, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+				//height:"605px", // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
 				layout:"fitColumns", //fit columns to width of table (optional)
+        pagination:"local",
+        paginationSize:6, 
 				columns:[ //Define Table Columns
 				    {title:"Logo", field:"image", width:150, formatter:"image", align:"center"},
 				    {title:"Brand name", field:"brand_name", align:"center"},
