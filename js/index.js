@@ -5,11 +5,7 @@ $(document).ready(function(){
 	  console.log("error");
 	}
 
-  /*var countries = {"SVN":"#table_svn", 
-                   "HRV":"#table_hrv", 
-                   "BIH":"#table_bih", 
-                   "SRB":"#table_srb",
-                   "MKD":"#table_mkd"};*/
+  var countries = ["SVN", "HRV", "BIH", "SRB", "MKD"];
 
   //for (let key in countries){
   
@@ -20,12 +16,12 @@ $(document).ready(function(){
     pagination:"local",
     paginationSize:6, 
 		columns:[ //Define Table Columns
-		    {title:"Logo", field:"image", formatter:"image", align:"center"},
-		    {title:"Brand name", field:"brand_name", headerFilter:"input", align:"center"},
-		    {title:"Category name", field:"category_name", headerFilter:"input", align:"center"},
+		    {title:"Logo", field:"image", formatter:"image", align:"center", width:"150"},
+		    {title:"Brand name", field:"brand_name", headerFilter:"input", align:"center", width:"200"},
+		    {title:"Category name", field:"category_name", headerFilter:"input", align:"center", width:"200"},
 		    {title:"Country", field:"country",  
-					headerFilter:"select", headerFilterParams:{"Slovenia":"Slovenia", "Croatia":"Croatia", "Bosnia & Hercegovina":"Bosnia & Hercegovina", "Serbia":"Serbia", "Macedonia":"Macedonia"}, 
-align:"center"}, 
+					headerFilter:"select", headerFilterParams:{"":"All","Slovenia":"Slovenia", "Croatia":"Croatia", "Bosnia & Hercegovina":"Bosnia & Hercegovina", "Serbia":"Serbia", "Macedonia":"Macedonia"}, 
+align:"center", width:"150"}, 
         {title:"producer", field:"producer", formatter:"tickCross", align:"center", width:"120"},
         /*{title:"brand_id", field:"brand_id", align:"center", width:"120"},
         {title:"master_id", field:"master_id", align:"center", width:"120"},
@@ -37,7 +33,7 @@ align:"center"},
   var tabledata = [];
 	function successCallback(response){
 
-	  for (var i = 0; i<response.length-1; i++){
+	  for (var i = 0; i<response.length; i++){
 			tabledata.push(
 					{id:response[i]["row_id"], 
 						image:response[i]["logo"],
@@ -56,9 +52,9 @@ align:"center"},
 		response.fail(errorFunc);
   }
   
-
-  postResponse("SVN");
-  postResponse("HRV");
+  for (var i = 0; i<countries.length; i++){
+    postResponse(countries[i]);
+  }
 
 
 });
